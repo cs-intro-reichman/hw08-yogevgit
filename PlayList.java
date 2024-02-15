@@ -149,7 +149,7 @@ class PlayList {
         if (this.size == 0) return;
         else 
         {
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < this.size; i++)
             {
                 if (this.tracks[i].getTitle().equals(title)== true) 
                     {
@@ -181,7 +181,7 @@ class PlayList {
             {
                 this.tracks[i]=other.tracks[i-this.size];
             }
-            this.size= this.size+other.size;
+            this.size= (this.size+other.size);
         }
 
         
@@ -195,7 +195,23 @@ class PlayList {
      */
     private int minIndex(int start) {
         //// replace the following statement with your code
-        return 0;
+        
+        if ((start < 0) || (start >= size)) return -1;
+        else
+        {
+            int min = this.tracks[start].getDuration();
+            int index = start;
+            for (int i = (start+1); i < this.size; i++)
+            {
+                if (this.tracks[i].getDuration()<min)
+                {
+                    min = this.tracks[i].getDuration();
+                    index = i;
+                }
+            }
+            return index;
+
+        }
     }
 
     /** Returns the title of the shortest track in this list. 
@@ -209,6 +225,15 @@ class PlayList {
      *  rather than returning a new, sorted playlist, the method sorts
      *  the list on which it was called (this list). */
     public void sortedInPlace() {
+        Track temp;
+        for (int i = 0; i< this.size; i++)
+        {
+             temp = this.tracks[i];
+             this.tracks[i]=this.tracks[minIndex(i)];
+             this.tracks[minIndex(i)]=temp;
+        }  
+
+        
         // Uses the selection sort algorithm,  
         // calling the minIndex method in each iteration.
         //// replace this statement with your code
