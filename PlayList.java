@@ -89,6 +89,7 @@ class PlayList {
     public int indexOf(String title) {
         for (int i = 0; i < size; i++)
         {
+            // #feedback - you should ignore lower/upper case.
             if (this.tracks[i].getTitle().equals(title)== true) return i;
         }
 
@@ -146,6 +147,7 @@ class PlayList {
      *  If such a track is not found, or the list is empty, or the given index
      *  is negative or too big for this list, does nothing. */
     public void remove(String title) {
+        // #feedback - you can call indexOf to get the index of the Track.
         if (this.size == 0) return;
         else 
         {
